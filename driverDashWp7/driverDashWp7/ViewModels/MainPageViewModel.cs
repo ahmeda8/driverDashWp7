@@ -6,9 +6,20 @@ using System.Collections.ObjectModel;
 
 namespace driverDashWp7.ViewModels
 {
-    class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : ViewModelBase
     {
         private DatabaseModel db;
+
+        private ObservableCollection<CarViewModel> _carCollection;
+        public ObservableCollection<CarViewModel> Cars
+        {
+            get { return _carCollection; }
+            set
+            {
+                _carCollection = value;
+                NotifyPropertyChanged("CarCollection");
+            }
+        }
 
         public MainPageViewModel()
         {
@@ -23,15 +34,6 @@ namespace driverDashWp7.ViewModels
             }
         }
 
-        private ObservableCollection<CarViewModel> _carCollection;
-        public ObservableCollection<CarViewModel> Cars
-        {
-            get { return _carCollection; }
-            set
-            {
-                _carCollection = value;
-                NotifyPropertyChanged("CarCollection");
-            }
-        }
+        
     }
 }
