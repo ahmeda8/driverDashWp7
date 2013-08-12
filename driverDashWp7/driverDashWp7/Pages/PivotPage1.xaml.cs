@@ -10,19 +10,14 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using driverDashWp7.ViewModels;
 
-namespace driverDashWp7
+namespace driverDashWp7.Pages
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class PivotPage1 : PhoneApplicationPage
     {
-        MainPageViewModel ViewModel;        
-        // Constructor
-        public MainPage()
+        public PivotPage1()
         {
             InitializeComponent();
-            ViewModel = new MainPageViewModel();
-            this.DataContext = ViewModel;
         }
     }
 }

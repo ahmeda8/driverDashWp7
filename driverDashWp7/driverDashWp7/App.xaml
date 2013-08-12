@@ -10,21 +10,28 @@
     <Application.Resources>
         <core:String x:Key="AppName">driverDash</core:String>
         <SolidColorBrush x:Key="BackgroundColor">Transparent</SolidColorBrush>
-        <FontFamily x:Key="Font1">Assets/Helvetica_Neue_Light.ttf#Helvetica Neue Light</FontFamily>
-        <FontFamily x:Key="Font2">Assets/Helvetica_Neue_Ultra_Light.ttf#Helvetica Neue Ultra Light</FontFamily>
+        <FontFamily x:Key="Font1">/driverDashWp7;component/Assets/Helvetica_Neue_Light.ttf#Helvetica Neue Light</FontFamily>
+        <FontFamily x:Key="Font2">/driverDashWp7;component/Assets/HelveticaNeueUltraLight.ttf#Helvetica Neue Ultra Light</FontFamily>
 
-        <Style x:Key="CustomTextStyle1" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="{StaticResource Font2}"/>
-            <Setter Property="FontSize" Value="60"/>
+        <Style x:Key="TextStyleLightPivotTitle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe WP Light"/>
+            <Setter Property="FontSize" Value="48"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+            <Setter Property="Margin" Value="0,-20,0,0"/>
+        </Style>
+
+        <Style x:Key="CustomTextStyleSemiLight" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe WP SemiLight"/>
+            <Setter Property="FontSize" Value="20"/>
             <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
             <Setter Property="Margin" Value="{StaticResource PhoneHorizontalMargin}"/>
         </Style>
 
-        <Style x:Key="CustomTextStyle2" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="{StaticResource Font1}"/>
-            <Setter Property="FontSize" Value="20"/>
+        <Style x:Key="TextStyleSemiLightPivotItemHeader" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe WP SemiLight"/>
+            <Setter Property="FontSize" Value="24"/>
             <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
-            <Setter Property="Margin" Value="{StaticResource PhoneHorizontalMargin}"/>
+            <Setter Property="Margin" Value="10,10,5,0"/>
         </Style>
     </Application.Resources>
 

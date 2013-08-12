@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -21,17 +22,31 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <Border>
+        
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,-1">
-                <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppName}" Style="{StaticResource CustomTextStyle2}"/>
-                <TextBlock x:Name="PageTitle" Text="theDASH" Margin="9,-7,0,0" Style="{StaticResource CustomTextStyle1}" />
+                <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppName}" Style="{StaticResource CustomTextStyleSemiLight}"/>
+                <!--<TextBlock x:Name="PageTitle" Text="theDASH" Margin="9,-7,0,0"  Style="{StaticResource CustomTextStyleLight}"/>-->
             </StackPanel>
-        </Border>
-
+        
+        
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            
-        </Grid>
+            <controls:Pivot ItemsSource="{Binding CarCollection}" Grid.Row="1">
+                <controls:Pivot.Title>
+                    <Border BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="0,0,0,2">
+                    <TextBlock Text="theDASH" Style="{StaticResource TextStyleLightPivotTitle}"/>
+                    </Border>
+                </controls:Pivot.Title>
+                <controls:Pivot.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Make}" Style="{StaticResource TextStyleSemiLightPivotItemHeader}"/>
+                    </DataTemplate>
+                </controls:Pivot.HeaderTemplate>
+                <controls:Pivot.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Model}"/>
+                    </DataTemplate>
+                </controls:Pivot.ItemTemplate>
+            </controls:Pivot>
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsMenuEnabled="True" IsVisible="True" Opacity="80" Mode="Minimized">

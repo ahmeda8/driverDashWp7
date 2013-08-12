@@ -22,7 +22,7 @@ namespace driverDashWp7
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
-
+        public const string DB_CONNECTION = "Data Source=isostore:/cars.sdf";
         /// <summary>
         /// Constructor for the Application object.
         /// </summary>
