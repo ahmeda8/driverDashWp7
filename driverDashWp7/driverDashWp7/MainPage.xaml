@@ -30,7 +30,7 @@
         
         
         <!--ContentPanel - place additional content here-->
-            <controls:Pivot ItemsSource="{Binding CarCollection}" Grid.Row="1">
+            <controls:Pivot ItemsSource="{Binding Cars}" Grid.Row="1">
                 <controls:Pivot.Title>
                     <Border BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="0,0,0,2">
                     <TextBlock Text="theDASH" Style="{StaticResource TextStyleLightPivotTitle}"/>
