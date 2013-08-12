@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:chart="clr-namespace:AmCharts.Windows.QuickCharts;assembly=AmCharts.Windows.QuickCharts.WP"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -22,31 +23,47 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        
+
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,-1">
-                <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppName}" Style="{StaticResource CustomTextStyleSemiLight}"/>
-                <!--<TextBlock x:Name="PageTitle" Text="theDASH" Margin="9,-7,0,0"  Style="{StaticResource CustomTextStyleLight}"/>-->
-            </StackPanel>
-        
-        
+            <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppName}" Style="{StaticResource CustomTextStyleSemiLight}"/>
+            <!--<TextBlock x:Name="PageTitle" Text="theDASH" Margin="9,-7,0,0"  Style="{StaticResource CustomTextStyleLight}"/>-->
+        </StackPanel>
+
+
         <!--ContentPanel - place additional content here-->
-            <controls:Pivot ItemsSource="{Binding Cars}" Grid.Row="1">
-                <controls:Pivot.Title>
-                    <Border BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="0,0,0,2">
+        <controls:Pivot ItemsSource="{Binding Cars}" Grid.Row="1">
+            <controls:Pivot.Title>
+                <Border BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="0,0,0,2">
                     <TextBlock Text="theDASH" Style="{StaticResource TextStyleLightPivotTitle}"/>
-                    </Border>
-                </controls:Pivot.Title>
-                <controls:Pivot.HeaderTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Make}" Style="{StaticResource TextStyleSemiLightPivotItemHeader}"/>
-                    </DataTemplate>
-                </controls:Pivot.HeaderTemplate>
-                <controls:Pivot.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Model}"/>
-                    </DataTemplate>
-                </controls:Pivot.ItemTemplate>
-            </controls:Pivot>
+                </Border>
+            </controls:Pivot.Title>
+            <controls:Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Make}" Style="{StaticResource TextStyleSemiLightPivotItemHeader}"/>
+                </DataTemplate>
+            </controls:Pivot.HeaderTemplate>
+            <controls:Pivot.ItemTemplate>
+                <DataTemplate>
+                    <ScrollViewer>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="240"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Model}" Grid.Column="0" Grid.Row="0"/>
+                            <chart:PieChart  Height="100" TitleMemberPath="Title" ValueMemberPath="Value" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" DataSource="{Binding FuelPieData}" Margin="0,0,10,0" />
+                            <chart:PieChart  Height="100" TitleMemberPath="Title" ValueMemberPath="Value" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="2" DataSource="{Binding UpkeepPieData}" Margin="0,0,10,0" />
+                        </Grid>
+                    </ScrollViewer>
+                </DataTemplate>
+            </controls:Pivot.ItemTemplate>
+        </controls:Pivot>
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsMenuEnabled="True" IsVisible="True" Opacity="80" Mode="Minimized">

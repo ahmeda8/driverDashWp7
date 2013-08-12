@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using driverDashWp7.Models;
 
 namespace driverDashWp7.ViewModels
 {
@@ -57,6 +59,43 @@ namespace driverDashWp7.ViewModels
                 _lic = value;
                 NotifyPropertyChanged("Lic");
             }
+        }
+
+        private ObservableCollection<ChartsPieDataModel> _fuelPieData;
+        public ObservableCollection<ChartsPieDataModel> FuelPieData
+        {
+            get { return _fuelPieData; }
+            set
+            {
+                _fuelPieData = value;
+                NotifyPropertyChanged("FuelPieData");
+            }
+        }
+
+        private ObservableCollection<ChartsPieDataModel> _upkeepPieData;
+        public ObservableCollection<ChartsPieDataModel> UpkeepPieData
+        {
+            get { return _upkeepPieData; }
+            set
+            {
+                _upkeepPieData = value;
+                NotifyPropertyChanged("UpkeepPieData");
+            }
+        }
+
+        public CarViewModel()
+        {
+            FuelPieData = new ObservableCollection<ChartsPieDataModel>();
+            UpkeepPieData = new ObservableCollection<ChartsPieDataModel>();
+#if DEBUG
+            FuelPieData.Add(new ChartsPieDataModel { Title = "fuel1", Value = 10.0d });
+            FuelPieData.Add(new ChartsPieDataModel { Title = "fuel2", Value = 20.0d });
+            FuelPieData.Add(new ChartsPieDataModel { Title = "fuel3", Value = 15.0d });
+
+            UpkeepPieData.Add(new ChartsPieDataModel { Title = "upkeep1", Value = 5.0d });
+            UpkeepPieData.Add(new ChartsPieDataModel { Title = "upkeep2", Value = 15.0d });
+            UpkeepPieData.Add(new ChartsPieDataModel { Title = "upkeep3", Value = 35.0d });
+#endif
         }
 
     }
