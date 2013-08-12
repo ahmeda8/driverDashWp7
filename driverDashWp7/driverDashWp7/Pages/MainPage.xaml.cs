@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using driverDashWp7.ViewModels;
 
-namespace driverDashWp7
+namespace driverDashWp7.Pages
 {
     public partial class MainPage : PhoneApplicationPage
     {
