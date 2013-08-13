@@ -29,11 +29,11 @@ namespace driverDashWp7.ViewModels
             db = DatabaseModel.GetInstance(App.DB_CONNECTION);
             Cars = new ObservableCollection<CarViewModel>();
 
-            var allCarsQuery = from carInfo c in db.carInfo
+            var allCarsQuery = from Car c in db.CarTable
                                select c;
-            foreach (carInfo c in allCarsQuery.ToArray())
+            foreach (Car c in allCarsQuery.ToArray())
             {
-                Cars.Add(new CarViewModel { ID=c.CarID, Make=c.CarMake, Lic=c.CarLic, Model=c.CarModel, Year = c.CarYear });
+                Cars.Add(new CarViewModel(c.CarID) { Make=c.Make, Lic=c.License, Model=c.Model, Year = c.Year });
             }
         }
 

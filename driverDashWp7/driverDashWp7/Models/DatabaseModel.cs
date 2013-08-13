@@ -23,760 +23,126 @@ namespace driverDashWp7
                 CreateDatabase();
 #if DEBUG
                 //if debug then fill some test information after db creation
-                this.carInfo.InsertOnSubmit(new carInfo { CarMake="BMW", CarModel="328i", CarYear="2013", CarLic="8SXY443", CarInsExpiry= DateTime.Now, CarRegExpiry = DateTime.Now, CarVin="asda2342", CarInsurance="sds233" });
-                this.carInfo.InsertOnSubmit(new carInfo { CarMake = "Mercedez", CarModel = "C350", CarYear = "2013", CarLic = "8BMB007", CarInsExpiry = DateTime.Now, CarRegExpiry = DateTime.Now, CarVin = "asda2342", CarInsurance = "sds233" });
-                this.carInfo.InsertOnSubmit(new carInfo { CarMake = "Audi", CarModel = "A4", CarYear = "2013", CarLic = "4DMB747", CarInsExpiry = DateTime.Now, CarRegExpiry = DateTime.Now, CarVin = "asda2342", CarInsurance = "sds233" });
+                this.CarTable.InsertOnSubmit(new Car { Make="BMW", Model="328i", Year="2013", License="8SXY443", Vin="asda2342", Insurance="sds233" });
+                this.CarTable.InsertOnSubmit(new Car { Make = "Mercedez", Model = "C350", Year = "2013", License = "8BMB007", Vin = "asda2342", Insurance = "sds233" });
+                this.CarTable.InsertOnSubmit(new Car { Make = "Audi", Model = "A4", Year = "2013", License = "4DMB747", Vin = "asda2342", Insurance = "sds233" });
+                SubmitChanges();
+
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("06/01/2013"), FillupCost = 45.54f, FillupVolume = 14.54f, Odometer = 100 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("07/07/2013"), FillupCost = 45.54f, FillupVolume = 18.54f, Odometer = 300 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("08/14/2013"), FillupCost = 50.54f, FillupVolume = 10.40f, Odometer = 500 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("08/20/2013"), FillupCost = 90.54f, FillupVolume = 12.24f, Odometer = 700 });
+
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 2, Created = DateTime.Parse("06/01/2013"), FillupCost = 40.54f, FillupVolume = 14.54f, Odometer = 100 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 2, Created = DateTime.Parse("07/07/2013"), FillupCost = 30.54f, FillupVolume = 28.54f, Odometer = 400 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 2, Created = DateTime.Parse("07/14/2013"), FillupCost = 25.54f, FillupVolume = 15.40f, Odometer = 500 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 2, Created = DateTime.Parse("08/20/2013"), FillupCost = 45.54f, FillupVolume = 9.24f, Odometer = 800 });
+
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 3, Created = DateTime.Parse("06/01/2013"), FillupCost = 24.54f, FillupVolume = 14.54f, Odometer = 1000 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 3, Created = DateTime.Parse("07/07/2013"), FillupCost = 65.54f, FillupVolume = 10.54f, Odometer = 2500 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 3, Created = DateTime.Parse("08/14/2013"), FillupCost = 78.54f, FillupVolume = 16.4f, Odometer = 5000 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 3, Created = DateTime.Parse("08/20/2013"), FillupCost = 25.54f, FillupVolume = 18.24f, Odometer = 6504 });
+
                 SubmitChanges();
 #endif
             }
         }
 
-        public Table<carInfo> carInfo;
-        public Table<fuelInfo> fuelInfo;
-        public Table<settingsInfo> settingsInfo;
-        public Table<maintInfo> maintInfo;
+        public Table<Car> CarTable;
+        public Table<Fuel> FuelTable;
+        public Table<maintInfo> MaintTable;
         public Table<reminderInfo> reminderInfo;
     }
 
     #region Table and class for car info
 
     [Table]
-    public class carInfo : INotifyPropertyChanged, INotifyPropertyChanging
+    public class Car
     {
-        private int _carID;
-
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
-        public int CarID
-        {
-            get { return _carID; }
-            set
-            {
-                if (_carID != value)
-                {
-                    NotifyPropertyChanging("CarID");
-                    _carID = value;
-                    NotifyPropertyChanged("CarID");
-                }
-            }
-        }
-
-        private string _carMake;
+        public int CarID { get; set; }
 
         [Column]
-
-        public string CarMake
-        {
-            get { return _carMake; }
-            set
-            {
-                if (_carMake != value)
-                {
-                    NotifyPropertyChanging("CarMake");
-                    _carMake = value;
-                    NotifyPropertyChanged("CarMake");
-                }
-            }
-        }
-
-        private string _carModel;
+        public string Make { get; set; }
 
         [Column]
-
-        public string CarModel
-        {
-            get { return _carModel; }
-            set
-            {
-                if (_carModel != value)
-                {
-                    NotifyPropertyChanging("CarModel");
-                    _carModel = value;
-                    NotifyPropertyChanged("CarModel");
-                }
-            }
-        }
-
-        private string _carYear;
+        public string Model { get; set; }
 
         [Column]
-
-        public string CarYear
-        {
-            get { return _carYear; }
-            set
-            {
-                if (_carYear != value)
-                {
-                    NotifyPropertyChanging("CarYear");
-                    _carYear = value;
-                    NotifyPropertyChanged("CarYear");
-                }
-            }
-        }
-
-        private string _carLic;
+        public string Year { get; set; }
 
         [Column]
-
-        public string CarLic
-        {
-            get { return _carLic; }
-            set
-            {
-                if (_carLic != value)
-                {
-                    NotifyPropertyChanging("CarLic");
-                    _carLic = value;
-                    NotifyPropertyChanged("CarLic");
-                }
-            }
-        }
-
-        private string _carVin;
+        public string License { get; set; }
 
         [Column]
-
-        public string CarVin
-        {
-            get { return _carVin; }
-            set
-            {
-                if (_carVin != value)
-                {
-                    NotifyPropertyChanging("CarVin");
-                    _carVin = value;
-                    NotifyPropertyChanged("CarVin");
-                }
-            }
-        }
-        private string _carInsurance;
+        public string Vin { get; set; }
 
         [Column]
+        public string Insurance { get; set; }
 
-        public string CarInsurance
-        {
-            get { return _carInsurance; }
-            set
-            {
-                if (_carInsurance != value)
-                {
-                    NotifyPropertyChanging("CarInsurance");
-                    _carInsurance = value;
-                    NotifyPropertyChanged("CarInsurance");
-                }
-            }
-        }
-
-        private DateTime _carInsExp;
         [Column]
-
-        public DateTime CarInsExpiry
-        {
-            get { return _carInsExp; }
-            set
-            {
-                if (_carInsExp != value)
-                {
-                    NotifyPropertyChanging("CarInsExpiry");
-                    _carInsExp = value;
-                    NotifyPropertyChanged("CarInsExpiry");
-                }
-            }
-        }
-
-        private DateTime _carRegExp;
-        [Column]
-
-        public DateTime CarRegExpiry
-        {
-            get { return _carRegExp; }
-            set
-            {
-                if (_carRegExp != value)
-                {
-                    NotifyPropertyChanging("CarRegExpiry");
-                    _carRegExp = value;
-                    NotifyPropertyChanged("CarRegExpiry");
-                }
-            }
-        }
-       
-        #region INotifyPropertyChanging Members
-
-        public event PropertyChangingEventHandler PropertyChanging;
-
-        // Used to notify that a property is about to change
-        private void NotifyPropertyChanging(string propertyName)
-        {
-            if (PropertyChanging != null)
-            {
-                PropertyChanging(this, new PropertyChangingEventArgs(propertyName));
-            }
-        }
-
-        #endregion
-
-        #region INotifyPropertyChanged Members
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // Used to notify that a property changed
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        #endregion
+        public int VehicleType { get; set; }
     }
 #endregion
 
     #region Table and class for fuel info
     [Table]
 
-    public class fuelInfo : INotifyPropertyChanged, INotifyPropertyChanging
+    public class Fuel
     {
-        private int _fuelID;
-         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
-        public int FuelID
-        {
-            get { return _fuelID; }
-            set
-            {
-                if (_fuelID != value)
-                {
-                    NotifyPropertyChanging("FuelID");
-                    _fuelID = value;
-                    NotifyPropertyChanged("FuelID");
-                }
-            }
-        }
-
-
-        private int _carID;
-        [Column]
-        public int CarID
-        {
-            get { return _carID; }
-            set
-            {
-                if (_carID != value)
-                {
-                    NotifyPropertyChanging("CarID");
-                    _carID = value;
-                    NotifyPropertyChanged("CarID");
-                }
-            }
-        }
-
-        private DateTime _date;
-        [Column]
-        public DateTime Date
-        {
-            get { return _date; }
-            set
-            {
-                if (_date != value)
-                {
-                    NotifyPropertyChanging("Date");
-                    _date = value;
-                    NotifyPropertyChanged("Date");
-                }
-            }
-        }
-
-        private int _miles;
-        [Column]
-        public int Miles
-        {
-            get { return _miles; }
-            set
-            {
-                if (_miles != value)
-                {
-                    NotifyPropertyChanging("Miles");
-                    _miles = value;
-                    NotifyPropertyChanged("Miles");
-                }
-            }
-        }
-        private float _filled;
+        [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
+        public int FuelID { get; set; }
 
         [Column]
-        public float Filled
-        {
-            get { return _filled; }
-            set
-            {
-                if (_filled != value)
-                {
-                    NotifyPropertyChanging("Filled");
-                    _filled = value;
-                    NotifyPropertyChanged("Filled");
-                }
-            }
-        }
-        private float _cost;
-         [Column]
-        public float Cost
-        {
-            get { return _cost; }
-            set
-            {
-                if (_cost != value)
-                {
-                    NotifyPropertyChanging("Cost");
-                    _cost = value;
-                    NotifyPropertyChanged("Cost");
-                }
-            }
-        }
+        public int CarID { get; set; }
 
-         private string _dateStr;
+        [Column]
+        public DateTime Created { get; set; }
 
-         [Column]
-         public string DateStr
-         {
-             get { return _dateStr; }
-             set
-             {
-                 if (_dateStr != value)
-                 {
-                     NotifyPropertyChanging("DateStr");
-                     _dateStr = value;
-                     NotifyPropertyChanged("DateStr");
-                 }
-             }
-         }
+        [Column]
+        public int Odometer { get; set; }
 
-         private double _mileage;
-         [Column]
-         public double Mileage
-         {
-             get { return _mileage; }
-             set
-             {
-                 if (_mileage != value)
-                 {
-                     NotifyPropertyChanging("Mileage");
-                     _mileage = value;
-                     NotifyPropertyChanged("Mileage");
-                 }
-             }
-         }
+        [Column]
+        public float FillupVolume { get; set; }
 
-         private float _distFromLast;
-         [Column]
-         public float DistanceFromLast
-         {
-             get { return _distFromLast; }
-             set
-             {
-                 if (_distFromLast != value)
-                 {
-                     NotifyPropertyChanging("DistanceFromLast");
-                     _distFromLast = value;
-                     NotifyPropertyChanged("DistanceFromLast");
-                 }
-             }
-         }
-
-         #region INotifyPropertyChanging Members
-
-         public event PropertyChangingEventHandler PropertyChanging;
-
-         // Used to notify that a property is about to change
-         private void NotifyPropertyChanging(string propertyName)
-         {
-             if (PropertyChanging != null)
-             {
-                 PropertyChanging(this, new PropertyChangingEventArgs(propertyName));
-             }
-         }
-
-         #endregion
-
-         #region INotifyPropertyChanged Members
-
-         public event PropertyChangedEventHandler PropertyChanged;
-
-         // Used to notify that a property changed
-         private void NotifyPropertyChanged(string propertyName)
-         {
-             if (PropertyChanged != null)
-             {
-                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-             }
-         }
-
-         #endregion
-
+        [Column]
+        public float FillupCost { get; set; }
     }
 #endregion
 
     #region Table and class for maint info
     [Table]
-    public class maintInfo : INotifyPropertyChanged, INotifyPropertyChanging
+    public class maintInfo
     {
-        private int _maintID;
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
-        public int MaintID
-        {
-            get { return _maintID; }
-            set
-            {
-                if (_maintID != value)
-                {
-                    NotifyPropertyChanging("MaintID");
-                    _maintID = value;
-                    NotifyPropertyChanged("MaintID");
-                }
-            }
-        }
-
-        private int _carID;
-        [Column]
-        public int CarID
-        {
-            get { return _carID; }
-            set
-            {
-                if (_carID != value)
-                {
-                    NotifyPropertyChanging("CarID");
-                    _carID = value;
-                    NotifyPropertyChanged("CarID");
-                }
-            }
-        }
-
-        private DateTime _date;
-        [Column]
-        public DateTime Date
-        {
-            get { return _date; }
-            set
-            {
-                if (_date != value)
-                {
-                    NotifyPropertyChanging("Date");
-                    _date = value;
-                    NotifyPropertyChanged("Date");
-                }
-            }
-        }
-
-        private string _maintType;
-        [Column]
-        public string MaintType
-        {
-            get { return _maintType; }
-            set
-            {
-                if (_maintType != value)
-                {
-                    NotifyPropertyChanging("MaintType");
-                    _maintType = value;
-                    NotifyPropertyChanged("MaintType");
-                }
-            }
-        }
-        private string _partName;
-        [Column]
-        public string PartName
-        {
-            get { return _partName; }
-            set
-            {
-                if (_partName != value)
-                {
-                    NotifyPropertyChanging("PartName");
-                    _partName = value;
-                    NotifyPropertyChanged("PartName");
-                }
-            }
-        }
-
-        private string _partNumber;
-        [Column]
-        public string PartNumber
-        {
-            get { return _partNumber; }
-            set
-            {
-                if (_partNumber != value)
-                {
-                    NotifyPropertyChanging("PartNumber");
-                    _partNumber = value;
-                    NotifyPropertyChanged("PartNumber");
-                }
-            }
-        }
-
-        private float _partCost;
-        [Column]
-        public float PartCost
-        {
-            get { return _partCost; }
-            set
-            {
-                if (_partCost != value)
-                {
-                    NotifyPropertyChanging("PartCost");
-                    _partCost = value;
-                    NotifyPropertyChanged("PartCost");
-                }
-            }
-        }
-
-        private float _laborCharges;
-        [Column]
-        public float LaborCharges
-        {
-            get { return _laborCharges; }
-            set
-            {
-                if (_laborCharges != value)
-                {
-                    NotifyPropertyChanging("LaborCharges");
-                    _laborCharges = value;
-                    NotifyPropertyChanged("LaborCharges");
-                }
-            }
-        }
-
-        private float _totalCost;
-        [Column]
-        public float TotalCost
-        {
-            get { return _totalCost; }
-            set
-            {
-                if (_totalCost != value)
-                {
-                    NotifyPropertyChanging("TotalCost");
-                    _totalCost = value;
-                    NotifyPropertyChanged("TotalCost");
-                }
-            }
-        }
-
-        private int _miles;
-        [Column]
-        public int Miles
-        {
-            get { return _miles; }
-            set
-            {
-                if (_miles != value)
-                {
-                    NotifyPropertyChanging("Miles");
-                    _miles = value;
-                    NotifyPropertyChanged("Miles");
-                }
-            }
-        }
-
-        private string _dateStr;
+        public int MaintID { get; set; }
 
         [Column]
-        public string DateStr
-        {
-            get { return _dateStr; }
-            set
-            {
-                if (_dateStr != value)
-                {
-                    NotifyPropertyChanging("DateStr");
-                    _dateStr = value;
-                    NotifyPropertyChanged("DateStr");
-                }
-            }
-        }
+        public int CarID { get; set; }
 
-        #region INotifyPropertyChanging Members
+        [Column]
+        public DateTime Created { get; set; }
 
-        public event PropertyChangingEventHandler PropertyChanging;
+        [Column]
+        public string MaintType { get; set; }
+        
+        [Column]
+        public string PartName { get; set; }
 
-        // Used to notify that a property is about to change
-        private void NotifyPropertyChanging(string propertyName)
-        {
-            if (PropertyChanging != null)
-            {
-                PropertyChanging(this, new PropertyChangingEventArgs(propertyName));
-            }
-        }
+        [Column]
+        public string PartNumber { get; set; }
 
-        #endregion
+        [Column]
+        public float PartCost { get; set; }
 
-        #region INotifyPropertyChanged Members
+        [Column]
+        public float LaborCharges { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // Used to notify that a property changed
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        #endregion
- 
+        [Column]
+        public int Odometer { get; set; }
     }
 
     #endregion
-
-    #region Table for settings
-    [Table]
-
-    public class settingsInfo : INotifyPropertyChanged, INotifyPropertyChanging
-    {
-        private int _settingID;
-        [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
-        public int SettingID
-        {
-            get { return _settingID; }
-            set
-            {
-                if (_settingID != value)
-                {
-                    NotifyPropertyChanging("SettingID");
-                    _settingID = value;
-                    NotifyPropertyChanged("SettingID");
-                }
-            }
-        }
-
-        private string _settingPage;
-        [Column]
-        public string SettingPage
-        {
-            get { return _settingPage; }
-            set
-            {
-                if (_settingPage != value)
-                {
-                    NotifyPropertyChanging("SettingPage");
-                    _settingPage = value;
-                    NotifyPropertyChanged("SettingPage");
-                }
-            }
-        }
-
-         private string _settingCurrency = "$";
-        [Column]
-         public string SettingCurrency
-        {
-            get { return _settingCurrency; }
-            set
-            {
-                if (_settingCurrency != value)
-                {
-                    NotifyPropertyChanging("SettingCurrency");
-                    _settingCurrency = value;
-                    NotifyPropertyChanged("SettingCurrency");
-                }
-            }
-        }
-
-        private string _settingVolume = "gal";
-        [Column]
-        public string SettingVolume
-        {
-            get { return _settingVolume; }
-            set
-            {
-                if (_settingVolume != value)
-                {
-                    NotifyPropertyChanging("SettingVolume");
-                    _settingVolume = value;
-                    NotifyPropertyChanged("SettingVolume");
-                }
-            }
-        }
-
-        private string _settingDistance = "miles";
-        [Column]
-        public string SettingDistance
-        {
-            get { return _settingDistance; }
-            set
-            {
-                if (_settingDistance != value)
-                {
-                    NotifyPropertyChanging("SettingDistance");
-                    _settingDistance = value;
-                    NotifyPropertyChanged("SettingDistance");
-                }
-            }
-        }
-
-        private bool _settingMPG1;
-        [Column]
-        public bool SettingMPG1
-        {
-            get { return _settingMPG1; }
-            set
-            {
-                if (_settingMPG1 != value)
-                {
-                    NotifyPropertyChanging("SettingMPG1");
-                    _settingMPG1 = value;
-                    NotifyPropertyChanged("SettingMPG1");
-                }
-            }
-        }
-
-        private bool _settingMPG2;
-        [Column]
-        public bool SettingMPG2
-        {
-            get { return _settingMPG2; }
-            set
-            {
-                if (_settingMPG2 != value)
-                {
-                    NotifyPropertyChanging("SettingMPG2");
-                    _settingMPG2 = value;
-                    NotifyPropertyChanged("SettingMPG2");
-                }
-            }
-        }
-        #region INotifyPropertyChanging Members
-
-        public event PropertyChangingEventHandler PropertyChanging;
-
-        // Used to notify that a property is about to change
-        private void NotifyPropertyChanging(string propertyName)
-        {
-            if (PropertyChanging != null)
-            {
-                PropertyChanging(this, new PropertyChangingEventArgs(propertyName));
-            }
-        }
-
-        #endregion
-
-        #region INotifyPropertyChanged Members
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // Used to notify that a property changed
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        #endregion
-    }
-	#endregion
 
     #region Table for reminder
     [Table]

@@ -68,7 +68,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsMenuEnabled="True" IsVisible="True" Opacity="80" Mode="Minimized">
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="+ new vehicle"/>
+                <shell:ApplicationBarMenuItem Text="+ new vehicle" Click="add_vehicle"/>
                 <shell:ApplicationBarMenuItem Text="backup / restore"/>
                 <shell:ApplicationBarMenuItem Text="settings"/>
             </shell:ApplicationBar.MenuItems>
