@@ -10,38 +10,23 @@ namespace driverDashWp7.Pages
     {
         private int carID;
         private CarViewModel ViewModel;
+        private DatabaseModel db;
 
         public AddEditCar()
         {
             InitializeComponent();
+            db = DatabaseModel.GetInstance(App.DB_CONNECTION);
         }
 
         private void saveClick(object sender, EventArgs e)
         {
-            if (carID == 0)
-            {
-                addCar();
-            }
-            else
-            {
-                updateCar();
-            }
+            var query = from Car c in db.CarTable
+                        where c.CarID == ViewModel.ID
+                        select c;
+            Car car = query.First();
             if (NavigationService.CanGoBack)
             {
                 NavigationService.GoBack();
-            }
-        }
-
-        private void addCar()
-        {
-           
-        }
-
-        private void updateCar()
-        {
-            if (txtMake.Text.Length > 0)
-            {
-           
             }
         }
 
