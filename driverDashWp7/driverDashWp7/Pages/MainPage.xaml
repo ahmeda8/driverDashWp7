@@ -57,6 +57,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding Model}" Grid.Column="0" Grid.Row="0"/>
+                            <Button Style="{StaticResource RoundEditButton}" Height="80" Width="80" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Tag="{Binding ID}" Click="edit_car_click"/>
                             <chart:PieChart  Height="100" TitleMemberPath="Title" ValueMemberPath="Value" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" DataSource="{Binding FuelPieData}" Margin="0,0,10,0" />
                             <chart:PieChart  Height="100" TitleMemberPath="Title" ValueMemberPath="Value" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="2" DataSource="{Binding UpkeepPieData}" Margin="0,0,10,0" />
                         </Grid>

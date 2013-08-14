@@ -34,5 +34,13 @@ namespace driverDashWp7.Pages
             ViewModel = new MainPageViewModel();
             this.DataContext = ViewModel;
         }
+
+        private void edit_car_click(object sender, RoutedEventArgs e)
+        {
+            string carid;
+            Button b = sender as Button;
+            carid = b.Tag.ToString();
+            NavigationService.Navigate(new Uri("/Pages/addEditCar.xaml?id="+carid, UriKind.Relative));
+        }
     }
 }
