@@ -2,8 +2,9 @@
 using System.ComponentModel;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
+using driverDashWp7.ViewModels;
 
-namespace driverDashWp7
+namespace driverDashWp7.Models
 {
     public class DatabaseModel : DataContext
     {
@@ -13,6 +14,7 @@ namespace driverDashWp7
         {
             if (_instance == null)
                 _instance = new DatabaseModel(connectionString);
+            
             return _instance;
         }
 
@@ -57,31 +59,47 @@ namespace driverDashWp7
     #region Table and class for car info
 
     [Table]
-    public class Car
+    public class Car : ViewModelBase
     {
+        private int _carid;
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
-        public int CarID { get; set; }
+        public int CarID
+        {
+            get { return _carid; }
+            set { _carid = value; NotifyPropertyChanged("CarID"); } 
+        }
 
+        private string _make;
         [Column]
-        public string Make { get; set; }
+        public string Make
+        { get { return _make; } 
+            set { _make = value; NotifyPropertyChanged("Make"); } }
 
+        private string _model;
         [Column]
-        public string Model { get; set; }
+        public string Model
+        { get { return _model; } set { _model = value; NotifyPropertyChanged("Model"); } }
 
+        private string _year;
         [Column]
-        public string Year { get; set; }
+        public string Year
+        { get { return _year; } set { _year = value; NotifyPropertyChanged("Year"); } }
 
+        private string _license;
         [Column]
-        public string License { get; set; }
+        public string License { get { return _license; } set { _license = value; NotifyPropertyChanged("License"); } }
 
+        private string _vin;
         [Column]
-        public string Vin { get; set; }
+        public string Vin { get { return _vin; } set { _vin = value; NotifyPropertyChanged("Vin"); } }
 
+        private string _insurance;
         [Column]
-        public string Insurance { get; set; }
+        public string Insurance { get { return _insurance; } set { _insurance = value; NotifyPropertyChanged("Insurance"); } }
 
+        private int _vehtype;
         [Column]
-        public int VehicleType { get; set; }
+        public int VehicleType { get { return _vehtype; } set { _vehtype = value; NotifyPropertyChanged("VehicleType"); } }
     }
 #endregion
 

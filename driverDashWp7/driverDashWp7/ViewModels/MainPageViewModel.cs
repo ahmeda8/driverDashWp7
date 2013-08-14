@@ -27,6 +27,7 @@ namespace driverDashWp7.ViewModels
         public MainPageViewModel()
         {
             db = DatabaseModel.GetInstance(App.DB_CONNECTION);
+            db.Refresh(System.Data.Linq.RefreshMode.KeepChanges, db.CarTable);
             Cars = new ObservableCollection<CarViewModel>();
 
             var allCarsQuery = from Car c in db.CarTable

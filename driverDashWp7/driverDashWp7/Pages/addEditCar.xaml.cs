@@ -3,13 +3,14 @@ using System.Linq;
 using Microsoft.Phone.Controls;
 using System.Windows;
 using driverDashWp7.ViewModels;
+using driverDashWp7.Models;
 
 namespace driverDashWp7.Pages
 {
     public partial class AddEditCar : PhoneApplicationPage
     {
         private int carID;
-        private CarViewModel ViewModel;
+        private Car ViewModel;
         private DatabaseModel db;
 
         public AddEditCar()
@@ -20,10 +21,9 @@ namespace driverDashWp7.Pages
 
         private void saveClick(object sender, EventArgs e)
         {
-            var query = from Car c in db.CarTable
-                        where c.CarID == ViewModel.ID
-                        select c;
-            Car car = query.First();
+            if (carID == 0)
+                db.CarTable.InsertOnSubmit(ViewModel);
+            db.SubmitChanges();
             if (NavigationService.CanGoBack)
             {
                 NavigationService.GoBack();
@@ -35,8 +35,13 @@ namespace driverDashWp7.Pages
             string carIDStr;
             NavigationContext.QueryString.TryGetValue("id", out carIDStr);
             int.TryParse(carIDStr, out this.carID);
-            ViewModel = new CarViewModel(carID);
-            ViewModel.PopulateData();
+            var query = from Car c in db.CarTable
+                        where c.CarID == carID
+                        select c;
+            if (carID == 0)
+                ViewModel = new Car();
+            else
+                ViewModel = query.First();
             this.DataContext = ViewModel;
             
             base.OnNavigatedTo(e);
@@ -45,6 +50,8 @@ namespace driverDashWp7.Pages
         
         private void DeleteClick(object sender, EventArgs e)
         {
+            db.CarTable.DeleteOnSubmit(ViewModel);
+            db.SubmitChanges();
             if (NavigationService.CanGoBack)
                 NavigationService.GoBack();
         }

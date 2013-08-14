@@ -21,13 +21,18 @@ namespace driverDashWp7.Pages
         public MainPage()
         {
             InitializeComponent();
-            ViewModel = new MainPageViewModel();
-            this.DataContext = ViewModel;
         }
 
         private void add_vehicle(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Pages/addEditCar.xaml?id=0", UriKind.Relative));
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ViewModel = new MainPageViewModel();
+            this.DataContext = ViewModel;
         }
     }
 }
