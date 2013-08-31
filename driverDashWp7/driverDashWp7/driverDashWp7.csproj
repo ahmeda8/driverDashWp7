@@ -73,6 +73,15 @@
     <Compile Include="Pages\addEditCar.xaml.cs">
       <DependentUpon>addEditCar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddEditFuel.xaml.cs">
+      <DependentUpon>AddEditFuel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\maint.xaml.cs">
+      <DependentUpon>maint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\fuel.xaml.cs">
+      <DependentUpon>fuel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -82,6 +91,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CarViewModel.cs" />
+    <Compile Include="ViewModels\FuelItemViewModel.cs" />
+    <Compile Include="ViewModels\FuelPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
@@ -92,6 +103,17 @@
     </ApplicationDefinition>
     <Page Include="Pages\addEditCar.xaml">
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AddEditFuel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\maint.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\fuel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainPage.xaml">
       <SubType>Designer</SubType>

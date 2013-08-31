@@ -42,5 +42,21 @@ namespace driverDashWp7.Pages
             carid = b.Tag.ToString();
             NavigationService.Navigate(new Uri("/Pages/addEditCar.xaml?id="+carid, UriKind.Relative));
         }
+
+        private void edit_maint_click(object sender, RoutedEventArgs e)
+        {
+            string carid;
+            Button b = sender as Button;
+            carid = b.Tag.ToString();
+            NavigationService.Navigate(new Uri("/Pages/maint.xaml?id=" + carid, UriKind.Relative));
+        }
+
+        private void edit_fuel_click(object sender, RoutedEventArgs e)
+        {
+            string carid;
+            Button b = sender as Button;
+            carid = b.Tag.ToString();
+            NavigationService.Navigate(new Uri("/Pages/fuel.xaml?id=" + carid, UriKind.Relative));
+        }
     }
 }

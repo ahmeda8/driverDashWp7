@@ -51,15 +51,25 @@
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="240"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding Model}" Grid.Column="0" Grid.Row="0"/>
+                            <Button Grid.Row="0" Grid.Column="0" Content="theFUEL" Tag="{Binding ID}" Click="edit_fuel_click"/>
+                            <Button Grid.Row="0" Grid.Column="1" Content="theUPKEEP" Tag="{Binding ID}" Click="edit_maint_click"/>
+                            <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="0,0,0,2" Margin="0,0,0,10" Width="480" />
+                            <TextBlock Text="{Binding Model}" Grid.Column="0" Grid.Row="2"/>
+                            <!--
                             <Button Style="{StaticResource RoundEditButton}" Height="80" Width="80" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Tag="{Binding ID}" Click="edit_car_click"/>
-                            <chart:PieChart  Height="100" TitleMemberPath="Title" ValueMemberPath="Value" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" DataSource="{Binding FuelPieData}" Margin="0,0,10,0" />
-                            <chart:PieChart  Height="100" TitleMemberPath="Title" ValueMemberPath="Value" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="2" DataSource="{Binding UpkeepPieData}" Margin="0,0,10,0" />
+                            <TextBlock Text="theFUEL" Grid.Column="0" Grid.Row="1"/>
+                            <Button Style="{StaticResource RoundEditButton}" Height="80" Width="80" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Tag="{Binding ID}" Click="edit_fuel_click"/>
+                            <TextBlock Text="theUPKEEP" Grid.Column="0" Grid.Row="2"/>
+                            <Button Style="{StaticResource RoundEditButton}" Height="80" Width="80" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Tag="{Binding ID}" Click="edit_maint_click"/>-->
+                            <chart:PieChart  Height="100" TitleMemberPath="Title" ValueMemberPath="Value" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="3" DataSource="{Binding FuelPieData}" Margin="0,0,10,0" />
+                            <chart:PieChart  Height="100" TitleMemberPath="Title" ValueMemberPath="Value" Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="4" DataSource="{Binding UpkeepPieData}" Margin="0,0,10,0" />
                         </Grid>
                     </ScrollViewer>
                 </DataTemplate>
