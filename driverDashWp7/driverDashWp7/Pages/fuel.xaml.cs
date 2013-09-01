@@ -33,7 +33,7 @@ namespace driverDashWp7.Pages
 
         private void add_new_fuel(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Pages/AddEditFuel.xaml?id="+ViewModel.CarID,UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Pages/AddEditFuel.xaml?id=0",UriKind.Relative));
         }
     }
 }

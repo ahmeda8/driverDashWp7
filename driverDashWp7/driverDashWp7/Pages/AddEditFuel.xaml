@@ -55,7 +55,7 @@
                 <TextBlock Padding="10" Grid.Column="0" Grid.Row="1" Text="Odometer:"/>
                 <TextBlock Padding="10" Grid.Column="0" Grid.Row="2" Text="Fill:" />
                 <TextBlock Padding="10" Grid.Column="0" Grid.Row="3" Text="Total Cost:"/>
-                <toolbox:DatePicker Grid.Column="1" Grid.Row="0" x:Name="datePick" Value="{Binding Date,Mode=TwoWay}"/>
+                <toolbox:DatePicker Grid.Column="1" Grid.Row="0" x:Name="datePick" Value="{Binding Created,Mode=TwoWay}"/>
                 <TextBox Grid.Column="1" Grid.Row="1" Name="txtMiles" Text="{Binding Odometer,Mode=TwoWay}" MaxLength="6" />
                 <TextBox Grid.Column="1" Grid.Row="2" Name="txtFill" Text="{Binding FillupVolume,Mode=TwoWay}" MaxLength="6" />
                 <TextBox Grid.Column="1" Grid.Row="3" Name="txtCost" Text="{Binding FillupCost, Mode=TwoWay}" MaxLength="6" />
