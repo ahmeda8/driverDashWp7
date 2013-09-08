@@ -58,5 +58,10 @@ namespace driverDashWp7.Pages
             carid = b.Tag.ToString();
             NavigationService.Navigate(new Uri("/Pages/fuel.xaml?id=" + carid, UriKind.Relative));
         }
+
+        private void settings_click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Pages/Settings.xaml", UriKind.Relative));
+        }
     }
 }

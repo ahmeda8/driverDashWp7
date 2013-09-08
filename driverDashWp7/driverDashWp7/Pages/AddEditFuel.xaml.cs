@@ -11,6 +11,7 @@ namespace driverDashWp7.Pages
     public partial class AddEditFuel : PhoneApplicationPage
     {
         private int FueID;
+        private int CarID;
         private Fuel ViewModel;
         private DatabaseModel db;
 
@@ -22,6 +23,10 @@ namespace driverDashWp7.Pages
         private void Menu_save(object sender, EventArgs e)
         {
 
+            if (FueID == 0)
+            {
+                db.FuelTable.InsertOnSubmit(ViewModel);
+            }
             db.SubmitChanges();
             if (NavigationService.CanGoBack)
             { NavigationService.GoBack(); }
@@ -31,8 +36,10 @@ namespace driverDashWp7.Pages
         {
             
             base.OnNavigatedTo(e);
-            string fuelID;
+            string fuelID,carID;
             NavigationContext.QueryString.TryGetValue("id", out fuelID);
+            NavigationContext.QueryString.TryGetValue("carid", out carID);
+            CarID = int.Parse(carID);
             FueID = int.Parse(fuelID);
             db = DatabaseModel.GetInstance(App.DB_CONNECTION);
 
@@ -45,7 +52,7 @@ namespace driverDashWp7.Pages
             }
             else
             {
-                ViewModel = new Fuel() { Created = DateTime.Now };
+                ViewModel = new Fuel() { Created = DateTime.Now,CarID = this.CarID };
             }
 
             this.DataContext = ViewModel;

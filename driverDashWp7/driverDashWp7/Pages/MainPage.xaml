@@ -68,8 +68,8 @@
                             <Button Style="{StaticResource RoundEditButton}" Height="80" Width="80" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Tag="{Binding ID}" Click="edit_fuel_click"/>
                             <TextBlock Text="theUPKEEP" Grid.Column="0" Grid.Row="2"/>
                             <Button Style="{StaticResource RoundEditButton}" Height="80" Width="80" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Tag="{Binding ID}" Click="edit_maint_click"/>-->
-                            <chart:PieChart  Height="100" TitleMemberPath="Title" ValueMemberPath="Value" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="3" DataSource="{Binding FuelPieData}" Margin="0,0,10,0" />
-                            <chart:PieChart  Height="100" TitleMemberPath="Title" ValueMemberPath="Value" Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="4" DataSource="{Binding UpkeepPieData}" Margin="0,0,10,0" />
+                            <chart:PieChart  Height="100" TitleMemberPath="Title" ValueMemberPath="Value" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="3" DataSource="{Binding FuelPieData}" Margin="0,0,10,0" IsHitTestVisible="False"/>
+                            <chart:PieChart  Height="100" TitleMemberPath="Title" ValueMemberPath="Value" Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="4" DataSource="{Binding UpkeepPieData}" Margin="0,0,10,0" IsHitTestVisible="False"/>
                         </Grid>
                     </ScrollViewer>
                 </DataTemplate>
@@ -81,7 +81,7 @@
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="+ new vehicle" Click="add_vehicle"/>
                 <shell:ApplicationBarMenuItem Text="backup / restore"/>
-                <shell:ApplicationBarMenuItem Text="settings"/>
+                <shell:ApplicationBarMenuItem Text="settings" Click="settings_click"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

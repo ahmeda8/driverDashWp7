@@ -6,7 +6,8 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:charts="clr-namespace:AmCharts.Windows.QuickCharts;assembly=AmCharts.Windows.QuickCharts.WP"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -19,7 +20,7 @@
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="+ fuel" Click="add_new_fuel"/>
             </shell:ApplicationBar.MenuItems>
-            
+
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -43,9 +44,35 @@
                 <controls:PivotItem.Header>
                     <TextBlock Text="rundown" Style="{StaticResource TextStyleSemiLightPivotItemHeader}"/>
                 </controls:PivotItem.Header>
-                <Grid>
-                    
-                </Grid>
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="{Binding CarName}" Style="{StaticResource PhoneTextLargeStyle}" TextTrimming="WordEllipsis"/>
+
+                        <charts:SerialChart Grid.Row="1" DataSource="{Binding FuelChart}" CategoryValueMemberPath="Title" Height="300" PlotAreaBackground="Transparent" AxisForeground="{StaticResource PhoneForegroundBrush}" IsHitTestVisible="False" >
+                            <charts:SerialChart.Graphs>
+                                <charts:LineGraph ValueMemberPath="Line1" Title="monthly cost" />
+                            </charts:SerialChart.Graphs>
+                        </charts:SerialChart>
+
+                        <charts:SerialChart Grid.Row="2" DataSource="{Binding FuelChart}" CategoryValueMemberPath="Title" Height="300" PlotAreaBackground="Transparent" AxisForeground="{StaticResource PhoneForegroundBrush}" IsHitTestVisible="False">
+                            <charts:SerialChart.Graphs>
+                                <charts:LineGraph ValueMemberPath="Line2"  Title="monthly fuel"/>
+                            </charts:SerialChart.Graphs>
+                        </charts:SerialChart>
+
+                        <charts:SerialChart Grid.Row="3" DataSource="{Binding FuelChart}" CategoryValueMemberPath="Title" Height="300" PlotAreaBackground="Transparent" AxisForeground="{StaticResource PhoneForegroundBrush}" IsHitTestVisible="False">
+                            <charts:SerialChart.Graphs>
+                                <charts:LineGraph ValueMemberPath="Line3"  Title="monthly mileage"/>
+                            </charts:SerialChart.Graphs>
+                        </charts:SerialChart>
+                    </Grid>
+                </ScrollViewer>
             </controls:PivotItem>
 
             <!--Pivot item two-->
@@ -57,14 +84,33 @@
                     <ListBox ItemsSource="{Binding FuelList}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Date}"/>
+                                <Border BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="0,0,0,1">
+                                    <Grid ShowGridLines="False" Width="470">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="80" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Date}" Style="{StaticResource PhoneTextLargeStyle}"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Cost}" Margin="10 0 0 0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Vol}" Margin="10 0 10 0" HorizontalAlignment="Right" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding MPG}" Style="{StaticResource PhoneTextLargeStyle}" HorizontalAlignment="Right"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Miles}" HorizontalAlignment="Right" Margin="0 0 10 0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                        <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Width="80" Height="80" Style="{StaticResource RoundEditButton}" Tag="{Binding FuelID}" Click="Edit_fuel_click" HorizontalAlignment="Right" Margin="0,0,5,0"/>
+                                    </Grid>
+                                </Border>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
-                        
+
                     </ListBox>
                 </Grid>
             </controls:PivotItem>
         </controls:Pivot>
     </Grid>
-    
+
 </phone:PhoneApplicationPage>

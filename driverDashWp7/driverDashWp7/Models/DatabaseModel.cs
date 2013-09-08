@@ -30,10 +30,18 @@ namespace driverDashWp7.Models
                 this.CarTable.InsertOnSubmit(new Car { Make = "Audi", Model = "A4", Year = "2013", License = "4DMB747", Vin = "asda2342", Insurance = "sds233" });
                 SubmitChanges();
 
-                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("06/01/2013"), FillupCost = 45.54f, FillupVolume = 14.54f, Odometer = 100 });
-                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("07/07/2013"), FillupCost = 45.54f, FillupVolume = 18.54f, Odometer = 300 });
-                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("08/14/2013"), FillupCost = 50.54f, FillupVolume = 10.40f, Odometer = 500 });
-                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("08/20/2013"), FillupCost = 90.54f, FillupVolume = 12.24f, Odometer = 700 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("01/01/2013"), FillupCost = 45.54f, FillupVolume = 14.54f, Odometer = 100 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("02/07/2013"), FillupCost = 32.54f, FillupVolume = 18.54f, Odometer = 300 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("03/14/2013"), FillupCost = 43.54f, FillupVolume = 10.40f, Odometer = 500 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("04/20/2013"), FillupCost = 96.54f, FillupVolume = 16.24f, Odometer = 700 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("05/23/2013"), FillupCost = 35.54f, FillupVolume = 12.24f, Odometer = 800 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("06/2/2013"), FillupCost = 34.54f, FillupVolume = 15.24f, Odometer = 900 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("07/4/2013"), FillupCost = 77.54f, FillupVolume = 18.24f, Odometer = 1100 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("08/25/2013"), FillupCost = 87.54f, FillupVolume = 19.24f, Odometer = 1300 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("09/13/2013"), FillupCost = 57.54f, FillupVolume = 14.24f, Odometer = 1500 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("10/15/2013"), FillupCost = 90.54f, FillupVolume = 12.24f, Odometer = 1700 });
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("11/21/2013"), FillupCost = 76.54f, FillupVolume = 18.24f, Odometer = 1900});
+                this.FuelTable.InsertOnSubmit(new Fuel { CarID = 1, Created = DateTime.Parse("12/7/2013"), FillupCost = 66.54f, FillupVolume = 13.24f, Odometer = 2300 });
 
                 this.FuelTable.InsertOnSubmit(new Fuel { CarID = 2, Created = DateTime.Parse("06/01/2013"), FillupCost = 40.54f, FillupVolume = 14.54f, Odometer = 100 });
                 this.FuelTable.InsertOnSubmit(new Fuel { CarID = 2, Created = DateTime.Parse("07/07/2013"), FillupCost = 30.54f, FillupVolume = 28.54f, Odometer = 400 });
