@@ -34,7 +34,7 @@
         <controls:Pivot ItemsSource="{Binding Cars}" Grid.Row="1">
             <controls:Pivot.Title>
                 <Border BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="0,0,0,2">
-                    <TextBlock Text="theDASH" Style="{StaticResource TextStyleLightPivotTitle}"/>
+                    <TextBlock Text="theDASH" Style="{StaticResource TextStyleLightPivotTitle}" Width="480"/>
                 </Border>
             </controls:Pivot.Title>
             <controls:Pivot.HeaderTemplate>
@@ -58,7 +58,7 @@
                                 <ColumnDefinition Width="240"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Row="0" Grid.Column="0" Content="theFUEL" Tag="{Binding ID}" Click="edit_fuel_click"/>
+                            <Button Grid.Row="0" Grid.Column="0" Content="theFuel" Tag="{Binding ID}" Click="edit_fuel_click" />
                             <Button Grid.Row="0" Grid.Column="1" Content="theUPKEEP" Tag="{Binding ID}" Click="edit_maint_click"/>
                             <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="0,0,0,2" Margin="0,0,0,10" Width="480" />
                             <TextBlock Text="{Binding Model}" Grid.Column="0" Grid.Row="2"/>
